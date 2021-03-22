@@ -8,7 +8,7 @@ const {
 
 router.get('/', displayTodo)
 router.post('/', postTodo)
-router.delete('/', deleteTodo)
-router.put('/', updateTodo)
+router.delete('/:id', deleteTodo)
+router.put('/:id', updateTodo)
 
 module.exports = router
