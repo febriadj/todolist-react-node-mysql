@@ -73,7 +73,7 @@ class Request extends Component {
               onChange={ this.handleChange }
               value={ this.state.activity }
             />
-            <button>Submit</button>
+            <button type="submit"><i className="fas fa-long-arrow-right"></i></button>
           </form>
         </div>
         <div className="lists">
