@@ -3,7 +3,7 @@ const conn = require('../config/db')
 'use strict'
 
 exports.displayTodo = async function(req, res, next) {
-  const sql = await `SELECT * FROM todolist`
+  const sql = await `SELECT * FROM todolist ORDER BY created_at DESC`
   conn.query(sql, (err, rows) => {
     if (err) return console.log(Error(err))
 
