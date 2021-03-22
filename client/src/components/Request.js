@@ -48,19 +48,18 @@ class Request extends Component {
         activity: this.state.activity
       })
     })
-
-    this.setState({
+    .then(() => this.setState({
       activity: ''
-    })
-
-    this.displayLists()
+    }))
+    .then(() => this.displayLists())
+    .catch(err => console.log(err))
   }
 
   handleDelete = (event) => {
     let targetId = event.target.value
     fetch('http://localhost:4000/todo/' + targetId, { method: 'DELETE' })
-    
-    this.displayLists()
+      .then(() => this.displayLists())
+      .catch(err => console.log(err))
   }
 
   render() {
