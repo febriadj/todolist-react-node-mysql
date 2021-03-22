@@ -5,10 +5,15 @@ class Request extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { activity: '', todoList: [] }
+    this.state = { 
+      activity: '', 
+      todoList: [],
+      valueButton: ''
+    }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   displayLists = () => {
@@ -51,6 +56,13 @@ class Request extends Component {
     this.displayLists()
   }
 
+  handleDelete = (event) => {
+    let targetId = event.target.value
+    fetch('http://localhost:4000/todo/' + targetId, { method: 'DELETE' })
+    
+    this.displayLists()
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -68,7 +80,12 @@ class Request extends Component {
         <div className="lists">
         {
           this.state.todoList.map(lists => {
-            return <ListCard lists={ lists } key={ lists.id } />
+            return <ListCard 
+              lists={ lists } 
+              valueButton={ this.state.valueButton }
+              delete={ (value) => this.handleDelete(value) } 
+              key={ lists.id } 
+            />
           })
         }
         </div>
